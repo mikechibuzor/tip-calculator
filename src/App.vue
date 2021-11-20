@@ -130,7 +130,6 @@ const validateInputs = ()=>{
 
 const computeTip = (value)=>{
   if(validateInputs()){
-    
    totalMoneyPayable.value = ((parseInt(value) / 100) * parseInt(bill.value)) + parseInt(bill.value);
   totalAmountPerPerson.value = (parseInt(totalMoneyPayable.value) / parseInt(numberOfPeople.value));
   tipAmountPerPerson.value = ((parseInt(value) / 100) * parseInt(bill.value) / parseInt(numberOfPeople.value));
@@ -138,11 +137,11 @@ const computeTip = (value)=>{
 }
 
 const removeActiveButton = ()=>{
-  
    const tipButtons = document.querySelectorAll('.options button');
     [...tipButtons].forEach( button =>{
     button.classList.remove('active-tip-button-option');
   });
+ 
 }
 
 const activeButtonHandler = (event)=>{
@@ -160,7 +159,10 @@ const activeButtonHandler = (event)=>{
 
 const numberOfPeopleHandler = ()=>{
   validate.value = false;
-  const val = selectedTipValue.value ? selectedTipValue.value : customTip.value;
+  let val = selectedTipValue.value ? selectedTipValue.value : customTip.value;
+  if(val === ''){
+    val = 0.00;
+  }
   computeTip(val);
 }
 
@@ -201,5 +203,8 @@ const disableButtonClassHandler = ()=>{
 
 
 <style scoped>
-
+.active-tip-button-option {
+    background-color: hsl(172, 67%, 45%);
+    color: hsl(183, 100%, 15%);
+}
 </style>
