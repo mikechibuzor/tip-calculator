@@ -56,7 +56,7 @@
       </div>
       <div class="second-half  flex flex-col justify-between rounded-xl bg-very-dark-cyan shadow-sm 2xl:p-12 p-8">
        <div class="connt">
-          <div class="tip-per-person mb-8 2xl:mb-20 xl:mb-12 flex items-center justify-between">
+          <div class="tip-per-person mb-8 2xl:mb-20 xl:mb-10  flex items-center justify-between">
             <div class="div">
               <h3 class="text-sm 2xl:text-lg font-bold font-space-mono text-white">Tip Amount</h3>
               <h5 class="text-xs 2xl:text-lg text-dark-grayish-cyan2 font-bold">/ person</h5>
@@ -80,7 +80,7 @@
           </div>
        </div>
        <div class="reset-button mt-14 xl:mt-0">
-         <button class="outline-none hover:bg-light-grayish-cyan1 2xl:py-5  hover:text-very-dark-cyan duration-100 ease-linear border-none text-very-dark-cyan font-space-mono font-bold bg-strong-cyan w-full px-8 py-2.5 rounded text-lg" @click="resetButtonHandler">RESET</button>
+         <button :class="disableButtonClass" class="outline-none  hover:bg-light-grayish-cyan1 2xl:py-5  hover:text-very-dark-cyan duration-100 ease-linear border-none text-very-dark-cyan font-space-mono font-bold bg-strong-cyan w-full px-8 py-2.5 rounded text-lg" @click="resetButtonHandler">RESET</button>
        </div>
       </div>
     </div>
@@ -102,10 +102,12 @@ const totalAmountPerPerson = ref(0.00);
 const tipAmountPerPerson = ref(0.00);
 const customTip = ref('');
 const validate = ref(false);
+const disableButton = ref(true);
 
 // computed
 const displayTotalAmountPerPerson = computed(()=> totalAmountPerPerson.value.toFixed(2));
 const displayTipAmountPerPerson = computed(()=> tipAmountPerPerson.value.toFixed(2) );
+const disableButtonClass= computed(()=> disableButton.value)
 const validateError = computed(()=> {
   return{
     'validate-error': validate.value
@@ -128,6 +130,7 @@ const validateInputs = ()=>{
 
 const computeTip = (value)=>{
   if(validateInputs()){
+    
    totalMoneyPayable.value = ((parseInt(value) / 100) * parseInt(bill.value)) + parseInt(bill.value);
   totalAmountPerPerson.value = (parseInt(totalMoneyPayable.value) / parseInt(numberOfPeople.value));
   tipAmountPerPerson.value = ((parseInt(value) / 100) * parseInt(bill.value) / parseInt(numberOfPeople.value));
@@ -135,6 +138,7 @@ const computeTip = (value)=>{
 }
 
 const removeActiveButton = ()=>{
+  
    const tipButtons = document.querySelectorAll('.options button');
     [...tipButtons].forEach( button =>{
     button.classList.remove('active-tip-button-option');
@@ -166,6 +170,7 @@ const customTipHandler = ()=>{
 }
 
 const resetButtonHandler = ()=>{
+  removeActiveButton();
   selectedTipValue.value = 0.00;
   bill.value = '';
   numberOfPeople.value = '';
@@ -177,6 +182,18 @@ const resetButtonHandler = ()=>{
 }
 
 
+const disableButtonClassHandler = ()=>{
+  if(bill.value ||
+     selectedTipValue.value ||
+     numberOfPeople.value ||
+     customTip.value){
+       disableButton.value = false;
+     }else{
+       disableButton.value = true;
+     }
+}
+
+
 
 
 </script>
@@ -185,76 +202,4 @@ const resetButtonHandler = ()=>{
 
 <style scoped>
 
-.title h1{
-  letter-spacing: 0.3em;
-}
-
-input{
-  border: 2px solid transparent;
-}
-
-.options button:active {
-    transform: scale(.9);
-    background-color: hsl(172, 67%, 45%);
-color: hsl(183, 100%, 15%);
-}
-
-.tip-calculator-container{
-  box-shadow: 0px 0px 24px rgba(0, 0, 0, .1);
-}
-
-input:active,
-input:focus,
-input:hover{
-  border: 2px solid hsl(172, 67%, 45%);
-}
-
-
-.input-box input[type="text"]::-webkit-input-placeholder{
-  font-family: "Space Mono", monospace;
-  font-weight: 700;
-  text-align: end;
-  font-size: 1.2rem;
-}
-
-
-.custom,
-.options input[type="text"]::-webkit-input-placeholder{
-  font-family: "Space Mono", monospace;
-  font-weight: 700;
-  text-align: center;
-  color: hsl(186, 14%, 43%);
-  font-size: 1.2rem;
-}
-
-.active-tip-button-option{
-background-color: hsl(172, 67%, 45%);
-color: hsl(183, 100%, 15%);
-}
-/* validate error */
-.validate-error{
-  border: 2px solid red;
-}
-
-@media screen and (min-width: 1400px){
-  .tip-calculator-container{
-    height: 50vh;
-  }
-
-  .options button{
-    padding-top: 0.625rem;
-    padding-bottom: 0.625rem;
-  }
-}
-@media screen and (min-width: 1600px){
-  .tip-calculator-container{
-    height: 55vh;
-  }
-
-  .options button{
-    padding-top: 1.1rem;
-    padding-bottom: 1.1rem;
-  }
-
-}
 </style>

@@ -1,0 +1,80 @@
+.title h1 {
+    letter-spacing: 0.3em;
+}
+
+input {
+    border: 2px solid transparent;
+}
+
+.options button:active {
+    transform: scale(.9);
+    background-color: hsl(172, 67%, 45%);
+    color: hsl(183, 100%, 15%);
+}
+
+.tip-calculator-container {
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, .1);
+}
+
+input:active,
+input:focus,
+input:hover {
+    border: 2px solid hsl(172, 67%, 45%);
+}
+
+
+.input-box input[type="text"]::-webkit-input-placeholder {
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    text-align: end;
+    font-size: 1.2rem;
+}
+
+
+.custom,
+.options input[type="text"]::-webkit-input-placeholder {
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    text-align: center;
+    color: hsl(186, 14%, 43%);
+    font-size: 1.2rem;
+}
+
+.active-tip-button-option {
+    background-color: hsl(172, 67%, 45%);
+    color: hsl(183, 100%, 15%);
+}
+
+/* validate error */
+.validate-error {
+    border: 2px solid red;
+}
+
+/* disable button */
+.disable-button{
+    opacity: .3;
+    cursor: not-allowed;
+}
+
+@media screen and (min-width: 1400px) {
+    .tip-calculator-container {
+        height: 50vh;
+    }
+
+    .options button {
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .tip-calculator-container {
+        height: 55vh;
+    }
+
+    .options button {
+        padding-top: 1.1rem;
+        padding-bottom: 1.1rem;
+    }
+
+}
