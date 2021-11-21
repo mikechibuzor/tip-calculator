@@ -146,9 +146,9 @@ const validateInputs = ()=>{
 const computeTip = (value)=>{
   if(validateInputs()){
    
-   totalMoneyPayable.value = ((parseInt(value) / 100) * parseInt(bill.value)) + parseInt(bill.value);
-  totalAmountPerPerson.value = (parseInt(totalMoneyPayable.value) / parseInt(numberOfPeople.value));
-  tipAmountPerPerson.value = ((parseInt(value) / 100) * parseInt(bill.value) / parseInt(numberOfPeople.value));
+   totalMoneyPayable.value = ((parseFloat(value) / 100) * parseFloat(bill.value)) + parseFloat(bill.value);
+  totalAmountPerPerson.value = (parseFloat(totalMoneyPayable.value) / parseFloat(numberOfPeople.value));
+  tipAmountPerPerson.value = ((parseFloat(value) / 100) * parseFloat(bill.value) / parseFloat(numberOfPeople.value));
 }
 }
 
@@ -197,7 +197,6 @@ const resetButtonHandler = ()=>{
   validate.value = false;
 }
 
-
 const disableButtonClassHandler = ()=>{
   if(bill.value ||
      selectedTipValue.value ||
@@ -209,12 +208,7 @@ const disableButtonClassHandler = ()=>{
      }
 }
 
-
-
-
 </script>
-
-
 
 <style scoped>
 .active-tip-button-option {
