@@ -105,8 +105,23 @@ const validate = ref(false);
 const disableButton = ref(true);
 
 // computed
-const displayTotalAmountPerPerson = computed(()=> totalAmountPerPerson.value.toFixed(2));
-const displayTipAmountPerPerson = computed(()=> tipAmountPerPerson.value.toFixed(2) );
+const displayTotalAmountPerPerson = computed(()=> {
+  if(isNaN(totalAmountPerPerson.value)){
+    return 0.00;
+  }
+  else{
+    return totalAmountPerPerson.value.toFixed(2);
+  }
+ 
+});
+const displayTipAmountPerPerson = computed(()=> {
+   if(isNaN(tipAmountPerPerson.value)){
+    return 0.00;
+  }
+  else{
+    return  tipAmountPerPerson.value.toFixed(2);
+  }
+}  );
 const disableButtonClass= computed(()=> disableButton.value)
 const validateError = computed(()=> {
   return{
@@ -130,6 +145,7 @@ const validateInputs = ()=>{
 
 const computeTip = (value)=>{
   if(validateInputs()){
+   
    totalMoneyPayable.value = ((parseInt(value) / 100) * parseInt(bill.value)) + parseInt(bill.value);
   totalAmountPerPerson.value = (parseInt(totalMoneyPayable.value) / parseInt(numberOfPeople.value));
   tipAmountPerPerson.value = ((parseInt(value) / 100) * parseInt(bill.value) / parseInt(numberOfPeople.value));
@@ -145,8 +161,6 @@ const removeActiveButton = ()=>{
 }
 
 const activeButtonHandler = (event)=>{
- 
- 
   removeActiveButton();  
   if(event.target.nodeName == 'BUTTON'){
     event.target.classList.add('active-tip-button-option');
