@@ -29,6 +29,9 @@ module.exports = {
         height90: "90vh",
         height100: "100vh",
       },
+      screens: {
+        "3xl": "1920px",
+      },
     },
   },
   variants: {
