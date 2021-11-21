@@ -53,6 +53,13 @@ input:hover {
     cursor: not-allowed;
 }
 
+@media screen and (max-width: 768px){
+    .custom,
+    .options input[type="text"]::-webkit-input-placeholder{
+        font-size: .9rem;
+    }
+}
+
 @media screen and (min-width: 1400px) {
     .tip-calculator-container {
         height: 50vh;
