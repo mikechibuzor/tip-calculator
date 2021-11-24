@@ -31,6 +31,7 @@ module.exports = {
       },
       screens: {
         "3xl": "1920px",
+        "custom-breakpoint": "1680px",
       },
     },
   },

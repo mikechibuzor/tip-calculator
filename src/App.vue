@@ -26,7 +26,7 @@
         </div>
 
         <!-- select tip % -->
-        <div class="select-tip mt-8 2xl:mt-9 3xl:mt-16">
+        <div class="select-tip mt-8 2xl:mt-9 custom-breakpoint:mt-14 3xl:mt-16">
             <label for="tip" class="font-space-mono text-dark-grayish-cyan1 2xl:mb-2 3xl:mb-2.5  font-bold block mb-1.5">Select Tip %</label>
             <div class="options grid grid-cols-3 gap-x-4 2xl:gap-x-6 gap-y-4">
               <button id="5" class="rounded-md tb hover:bg-light-grayish-cyan1  hover:text-very-dark-cyan duration-100 ease-linear px-4 2xl:py-3 3xl:py-4   py-1.5 text-white font-space-mono font-bold text-xl bg-very-dark-cyan " @click="activeButtonHandler">5%</button>
@@ -39,7 +39,7 @@
         </div>
 
         <!-- number of people -->
-        <div class="number-of-people mt-6  2xl:mt-10 3xl:mt-16">
+        <div class="number-of-people mt-6  2xl:mt-10 custom-breakpoint:mt-14 3xl:mt-16">
           <div class="div flex items-center justify-between">
             <label for="people" class="font-space-mono text-dark-grayish-cyan1 font-bold block mb-1.5">Number of people</label>
             <label v-if="validate" for="" class="font-space-mono text-red-600 font-bold block mb-1.5">Can't be zero</label>
@@ -56,13 +56,13 @@
       </div>
       <div class="second-half  flex flex-col justify-between rounded-xl bg-very-dark-cyan shadow-sm  3xl:p-12 p-8">
        <div class="connt">
-          <div class="tip-per-person mb-8  3xl:mb-20 xl:mb-10  flex items-center justify-between">
+          <div class="tip-per-person mb-8  3xl:mb-20 custom-breakpoint:mb-14 xl:mb-10  flex items-center justify-between">
             <div class="div">
               <h3 class="text-sm 2xl:text-lg font-bold font-space-mono text-white">Tip Amount</h3>
               <h5 class="text-xs 2xl:text-lg text-dark-grayish-cyan2 font-bold">/ person</h5>
             </div>
-            <div class="value">
-              <h1 class="text-strong-cyan font-bold font-space-mono text-4xl xl:text-5xl 2xl:text-6xl">
+            <div class="value overflow-hidden">
+              <h1 class="text-strong-cyan font-bold font-space-mono text-4xl xl:text-5xl 2xl:text-6xl overflow-hidden w-full">
               ${{ displayTipAmountPerPerson }}
               </h1>
             </div>
@@ -72,8 +72,8 @@
               <h3 class="text-sm 2xl:text-lg font-bold font-space-mono text-white">Total</h3>
               <h5 class="text-xs 2xl:text-lg text-dark-grayish-cyan2 font-bold">/ person</h5>
             </div>
-            <div class="value">
-              <h1 class="text-strong-cyan 2xl:text-6xl font-bold font-space-mono text-4xl xl:text-5xl">
+            <div class="value overflow-hidden">
+              <h1 class="text-strong-cyan 2xl:text-6xl font-bold font-space-mono text-4xl xl:text-5xl overflow-hidden">
               ${{ displayTotalAmountPerPerson }}
               </h1>
             </div>
